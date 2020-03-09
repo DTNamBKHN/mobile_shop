@@ -1,3 +1,9 @@
+<?php
+	if (!defined('TEMPLATE'))
+	{
+		die('Access denied');
+	}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -32,17 +38,17 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"><span>Vietpro</span>Shop</a>
+				<a class="navbar-brand" href="index.php"><span>Vietpro</span>Shop</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user">
 								<use xlink:href="#stroked-male-user"></use>
-							</svg> Admin <span class="caret"></span></a>
+							</svg> <?php if(isset($_SESSION['mail'])) echo $_SESSION['mail']; ?> <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#"><svg class="glyph stroked male-user">
 										<use xlink:href="#stroked-male-user"></use>
 									</svg> Hồ sơ</a></li>
-							<li><a href="#"><svg class="glyph stroked cancel">
+							<li><a href="logout.php"><svg class="glyph stroked cancel">
 										<use xlink:href="#stroked-cancel"></use>
 									</svg> Đăng xuất</a></li>
 						</ul>
@@ -60,14 +66,14 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="admin.html"><svg class="glyph stroked dashboard-dial">
+			<li class="active"><a href="index.php"><svg class="glyph stroked dashboard-dial">
 						<use xlink:href="#stroked-dashboard-dial"></use>
 					</svg> Dashboard</a></li>
-			<li><a href="admin.php?page_layout=user"><svg class="glyph stroked male user ">
+			<li><a href="index.php?page_layout=user"><svg class="glyph stroked male user ">
 						<use xlink:href="#stroked-male-user" /></svg>Quản lý thành viên</a></li>
-			<li><a href="admin.php?page_layout=category"><svg class="glyph stroked open folder">
+			<li><a href="index.php?page_layout=category"><svg class="glyph stroked open folder">
 						<use xlink:href="#stroked-open-folder" /></svg>Quản lý danh mục</a></li>
-			<li><a href="admin.php?page_layout=product"><svg class="glyph stroked bag">
+			<li><a href="index.php?page_layout=product"><svg class="glyph stroked bag">
 						<use xlink:href="#stroked-bag"></use>
 					</svg>Quản lý sản phẩm</a></li>
 			<li><a href="comment.html"><svg class="glyph stroked two messages">
@@ -101,7 +107,7 @@
 				break;
 				case "product": include_once("product.php");
 				break;
-				case "user": include_once("add_user.php");
+				case "user": include_once("user.php");
 				break;
 			}
 		}

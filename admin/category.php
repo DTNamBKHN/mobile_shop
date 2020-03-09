@@ -1,4 +1,11 @@
-
+<?php
+if (!defined('TEMPLATE'))
+{
+    die('Access denied');
+}
+$sql = 'SELECT * FROM category ORDER BY cat_id ASC';
+$query = mysqli_query($conn, $sql);
+?>
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		<div class="row">
@@ -14,7 +21,7 @@
 			</div>
 		</div><!--/.row-->
 		<div id="toolbar" class="btn-group">
-            <a href="category-add.html" class="btn btn-success">
+            <a href="index.php?page_layout=add_category" class="btn btn-success">
                 <i class="glyphicon glyphicon-plus"></i> Thêm danh mục
             </a>
         </div>
@@ -34,22 +41,20 @@
 									</tr>
 									</thead>
 									<tbody>
+										<?php
+										while ($row = mysqli_fetch_assoc($query)){
+										?>
 										<tr>
-											<td style="">1</td>
-											<td style="">Danh mục 1</td>
+											<td style=""><?php echo $row['cat_id']; ?></td>
+											<td style=""><?php echo $row['cat_name']; ?></td>
 											<td class="form-group">
 												<a href="/" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
 												<a href="/" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
 											</td>
 										</tr>
-										<tr>
-											<td style="">2</td>
-											<td style="">Danh mục 2</td>
-											<td class="form-group">
-												<a href="/" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
-												<a href="/" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-											</td>
-										</tr>
+									<?php
+									}
+									?>
 									</tbody>
 								</table>
 							</div>
